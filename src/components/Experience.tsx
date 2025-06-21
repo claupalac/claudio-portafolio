@@ -26,7 +26,7 @@ const Experience: React.FC = () => {
     {
       period: '2024 – Present',
       title: 'Senior Software Engineer Team Lead',
-      company: 'Assuresoft',
+      company: 'Healthcare',
       icon: FaUsers,
       description: 'Leading a dynamic team in the successful delivery of high-quality software solutions. Built a reputation as a trusted reference within the project, earning the confidence of clients and stakeholders.',
       achievements: [
@@ -40,7 +40,7 @@ const Experience: React.FC = () => {
     {
       period: '2022 – 2024',
       title: 'Software Engineer Team Lead',
-      company: 'Assuresoft',
+      company: 'Healthcare',
       icon: FaRocket,
       description: 'Led a 5-member team, organizing, planning and designing architecture solutions. Worked with troubleshooting handling sensitive data and AWS cloud implementations.',
       achievements: [
@@ -54,7 +54,7 @@ const Experience: React.FC = () => {
     {
       period: '2021 – 2022',
       title: 'Junior Software Engineer',
-      company: 'Assuresoft',
+      company: 'Healthcare',
       icon: FaCode,
       description: 'Worked with several defects in PHP, JavaScript and TypeScript. Gained experience with MySQL database projects and payment systems.',
       achievements: [
