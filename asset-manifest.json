@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/claudio-portafolio/static/css/main.a0531783.css",
-    "main.js": "/claudio-portafolio/static/js/main.5c6e2c84.js",
+    "main.css": "/claudio-portafolio/static/css/main.f792976d.css",
+    "main.js": "/claudio-portafolio/static/js/main.2e93904f.js",
     "static/js/453.b66d0924.chunk.js": "/claudio-portafolio/static/js/453.b66d0924.chunk.js",
     "static/media/profile.png": "/claudio-portafolio/static/media/profile.8a0de5dbf6464444c7f4.png",
     "index.html": "/claudio-portafolio/index.html",
-    "main.a0531783.css.map": "/claudio-portafolio/static/css/main.a0531783.css.map",
-    "main.5c6e2c84.js.map": "/claudio-portafolio/static/js/main.5c6e2c84.js.map",
+    "main.f792976d.css.map": "/claudio-portafolio/static/css/main.f792976d.css.map",
+    "main.2e93904f.js.map": "/claudio-portafolio/static/js/main.2e93904f.js.map",
     "453.b66d0924.chunk.js.map": "/claudio-portafolio/static/js/453.b66d0924.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a0531783.css",
-    "static/js/main.5c6e2c84.js"
+    "static/css/main.f792976d.css",
+    "static/js/main.2e93904f.js"
   ]
 }
