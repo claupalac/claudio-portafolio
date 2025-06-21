@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/claudio-portafolio/static/css/main.01ba6938.css",
+    "main.css": "/claudio-portafolio/static/css/main.81cc197b.css",
     "main.js": "/claudio-portafolio/static/js/main.a66834e6.js",
     "static/js/453.b66d0924.chunk.js": "/claudio-portafolio/static/js/453.b66d0924.chunk.js",
     "static/media/profile.png": "/claudio-portafolio/static/media/profile.8a0de5dbf6464444c7f4.png",
     "index.html": "/claudio-portafolio/index.html",
-    "main.01ba6938.css.map": "/claudio-portafolio/static/css/main.01ba6938.css.map",
+    "main.81cc197b.css.map": "/claudio-portafolio/static/css/main.81cc197b.css.map",
     "main.a66834e6.js.map": "/claudio-portafolio/static/js/main.a66834e6.js.map",
     "453.b66d0924.chunk.js.map": "/claudio-portafolio/static/js/453.b66d0924.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.01ba6938.css",
+    "static/css/main.81cc197b.css",
     "static/js/main.a66834e6.js"
   ]
 }
