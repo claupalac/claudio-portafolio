@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaGithub, FaEnvelope, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { useInView } from 'react-intersection-observer';
+import { trackSectionView } from '../utils/analytics';
 import './Hero.css';
 
 const Hero: React.FC = () => {
+  const [ref, inView] = useInView({
+    threshold: 0.5,
+    triggerOnce: true,
+  });
+
+  useEffect(() => {
+    if (inView) {
+      trackSectionView('hero');
+    }
+  }, [inView]);
+
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
@@ -17,7 +30,7 @@ const Hero: React.FC = () => {
   const LinkedinIcon = FaLinkedin as React.ComponentType;
 
   return (
-    <section id="home" className="hero">
+    <section id="home" className="hero" ref={ref}>
       <div className="hero-background">
         <div className="hero-grid"></div>
       </div>

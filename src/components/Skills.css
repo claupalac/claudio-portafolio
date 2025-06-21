@@ -1,6 +1,7 @@
 .skills {
   background: var(--secondary-black);
   position: relative;
+  min-height: 100vh;
 }
 
 .skills::before {
@@ -183,6 +184,11 @@
 }
 
 @media (max-width: 768px) {
+  .skills {
+    min-height: auto;
+    padding: 2rem 0;
+  }
+  
   .skills-content {
     grid-template-columns: 1fr;
     gap: 2rem;

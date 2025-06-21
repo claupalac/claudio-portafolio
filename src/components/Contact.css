@@ -101,6 +101,49 @@
 
 .contact-form .btn {
   margin-top: 1rem;
+  align-self: center;
+  width: 100%;
+  max-width: 200px;
+  text-align: center;
+  display: inline-block;
+}
+
+.contact-form button[type="submit"] {
+  background: linear-gradient(135deg, var(--primary-gold), var(--accent-gold));
+  color: var(--primary-black);
+  border: none;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  margin-top: 1rem;
+  align-self: center;
+  width: 100%;
+  max-width: 200px;
+}
+
+.contact-form button[type="submit"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.contact-form button[type="submit"]:hover::before {
+  left: 100%;
+}
+
+.contact-form button[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
 }
 
 .form-success {
@@ -108,6 +151,62 @@
   font-size: 1.2rem;
   text-align: center;
   padding: 2rem 0;
+}
+
+.form-success h3 {
+  color: var(--primary-gold);
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.form-success p {
+  color: var(--text-gray);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.form-error {
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.form-error p {
+  color: #ff6b6b;
+  margin: 0;
+  font-weight: 500;
+}
+
+.contact-form input:disabled,
+.contact-form textarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.contact-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.contact-form button:disabled:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.btn-secondary {
+  background: rgba(255, 215, 0, 0.1);
+  color: var(--primary-gold);
+  border: 2px solid var(--primary-gold);
+}
+
+.btn-secondary:hover {
+  background: var(--primary-gold);
+  color: var(--primary-black);
 }
 
 @media (max-width: 900px) {
@@ -135,5 +234,12 @@
   .form-success {
     font-size: 1rem;
     padding: 1rem 0;
+  }
+  
+  .contact-form .btn,
+  .contact-form button[type="submit"] {
+    width: 100%;
+    max-width: none;
+    margin-top: 1.5rem;
   }
 } 

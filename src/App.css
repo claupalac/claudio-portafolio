@@ -23,19 +23,27 @@ body {
   background-color: var(--primary-black);
   color: var(--text-white);
   line-height: 1.6;
+  overflow-x: hidden; /* Prevent horizontal scroll on mobile */
 }
 
 .App {
   min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scroll on mobile */
 }
 
 main {
   padding-top: 80px;
+  width: 100%;
 }
 
 section {
   padding: 100px 0;
   position: relative;
+  width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scroll in sections */
+  z-index: 1; /* Ensure sections are properly layered */
+  display: block; /* Ensure sections are displayed as blocks */
 }
 
 .container {
@@ -109,15 +117,52 @@ section {
 }
 
 @media (max-width: 768px) {
-  .section-title {
-    font-size: 2.5rem;
+  body {
+    overflow-x: hidden; /* Ensure no horizontal scroll on mobile */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  }
+  
+  .App {
+    overflow-x: hidden;
+  }
+  
+  main {
+    padding-top: 70px; /* Reduce top padding on mobile */
   }
   
   section {
     padding: 60px 0;
+    overflow-x: hidden;
+    min-height: auto; /* Allow natural height */
+    display: block; /* Ensure proper display on mobile */
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
   }
   
   .container {
     padding: 0 15px;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    padding-top: 60px;
+  }
+  
+  section {
+    padding: 40px 0;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 40px;
+  }
+  
+  .container {
+    padding: 0 10px;
   }
 }

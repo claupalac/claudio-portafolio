@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { 
@@ -10,9 +10,21 @@ import './Skills.css';
 
 const Skills: React.FC = () => {
   const [ref, inView] = useInView({
-    threshold: 0.3,
+    threshold: 0.1,
     triggerOnce: true,
+    rootMargin: '-50px 0px',
   });
+
+  const [shouldAnimate, setShouldAnimate] = useState(false);
+  
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShouldAnimate(true);
+    }, 800);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const isVisible = inView || shouldAnimate;
 
   const skillCategories = [
     {
@@ -59,7 +71,7 @@ const Skills: React.FC = () => {
         <motion.h2
           className="section-title"
           initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
           Skills & Technologies
@@ -71,7 +83,7 @@ const Skills: React.FC = () => {
               key={category.title}
               className="skill-category"
               initial={{ opacity: 0, y: 50 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
+              animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: categoryIndex * 0.2 }}
             >
               <h3 className="category-title">{category.title}</h3>
@@ -83,7 +95,7 @@ const Skills: React.FC = () => {
                       key={skill.name}
                       className="skill-item"
                       initial={{ opacity: 0, scale: 0.8 }}
-                      animate={inView ? { opacity: 1, scale: 1 } : {}}
+                      animate={isVisible ? { opacity: 1, scale: 1 } : {}}
                       transition={{ duration: 0.6, delay: categoryIndex * 0.2 + skillIndex * 0.1 }}
                       whileHover={{ y: -5, scale: 1.02 }}
                     >
@@ -100,7 +112,7 @@ const Skills: React.FC = () => {
                         <motion.div
                           className="skill-progress-bar"
                           initial={{ width: 0 }}
-                          animate={inView ? { width: `${skill.level}%` } : {}}
+                          animate={isVisible ? { width: `${skill.level}%` } : {}}
                           transition={{ duration: 1, delay: categoryIndex * 0.2 + skillIndex * 0.1 + 0.3 }}
                         />
                       </div>
@@ -115,7 +127,7 @@ const Skills: React.FC = () => {
         <motion.div
           className="additional-skills"
           initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.8 }}
         >
           <h3>Additional Skills</h3>

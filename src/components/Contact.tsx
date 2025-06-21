@@ -1,19 +1,61 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaGithub, FaEnvelope, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { trackContactForm, trackSocialClick } from '../utils/analytics';
+import { sendEmail } from '../utils/emailService';
 import './Contact.css';
 
 const Contact: React.FC = () => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
-  const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+  }>({ type: null, message: '' });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+    if (submitStatus.type) {
+      setSubmitStatus({ type: null, message: '' });
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    
+    if (isSubmitting) return;
+    
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: '' });
+
+    try {
+      const result = await sendEmail(form);
+      
+      if (result.success) {
+        setSubmitStatus({
+          type: 'success',
+          message: result.message,
+        });
+        setForm({ name: '', email: '', message: '' });
+        trackContactForm();
+      } else {
+        setSubmitStatus({
+          type: 'error',
+          message: result.message,
+        });
+      }
+    } catch (error) {
+      setSubmitStatus({
+        type: 'error',
+        message: 'An unexpected error occurred. Please try again or contact me directly at clausspal97@gmail.com.',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleSocialClick = (platform: string) => {
+    trackSocialClick(platform);
   };
 
   const GithubIcon = FaGithub as React.ComponentType;
@@ -46,16 +88,38 @@ const Contact: React.FC = () => {
               Interested in working together or have any questions? Feel free to reach out!
             </p>
             <div className="contact-social">
-              <a href="https://github.com/claupalac" target="_blank" rel="noopener noreferrer" className="contact-social-link">
+              <a 
+                href="https://github.com/claupalac" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="contact-social-link"
+                onClick={() => handleSocialClick('github')}
+              >
                 <GithubIcon />
               </a>
-              <a href="https://www.instagram.com/claupalac/" target="_blank" rel="noopener noreferrer" className="contact-social-link">
+              <a 
+                href="https://www.instagram.com/claupalac/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="contact-social-link"
+                onClick={() => handleSocialClick('instagram')}
+              >
                 <InstagramIcon />
               </a>
-              <a href="https://www.linkedin.com/in/claudio-palacios-764638160" target="_blank" rel="noopener noreferrer" className="contact-social-link">
+              <a 
+                href="https://www.linkedin.com/in/claudio-palacios-764638160" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="contact-social-link"
+                onClick={() => handleSocialClick('linkedin')}
+              >
                 <LinkedinIcon />
               </a>
-              <a href="mailto:clausspal97@gmail.com" className="contact-social-link">
+              <a 
+                href="mailto:clausspal97@gmail.com" 
+                className="contact-social-link"
+                onClick={() => handleSocialClick('email')}
+              >
                 <EnvelopeIcon />
               </a>
             </div>
@@ -68,10 +132,26 @@ const Contact: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            {submitted ? (
-              <div className="form-success">Thank you for your message! I'll get back to you soon.</div>
+            {submitStatus.type === 'success' ? (
+              <div className="form-success">
+                <h3>Message Sent Successfully! ✅</h3>
+                <p>{submitStatus.message}</p>
+                <button 
+                  type="button" 
+                  className="btn btn-secondary"
+                  onClick={() => setSubmitStatus({ type: null, message: '' })}
+                >
+                  Send Another Message
+                </button>
+              </div>
             ) : (
               <>
+                {submitStatus.type === 'error' && (
+                  <div className="form-error">
+                    <p>❌ {submitStatus.message}</p>
+                  </div>
+                )}
+                
                 <input
                   type="text"
                   name="name"
@@ -79,6 +159,7 @@ const Contact: React.FC = () => {
                   value={form.name}
                   onChange={handleChange}
                   required
+                  disabled={isSubmitting}
                 />
                 <input
                   type="email"
@@ -87,6 +168,7 @@ const Contact: React.FC = () => {
                   value={form.email}
                   onChange={handleChange}
                   required
+                  disabled={isSubmitting}
                 />
                 <textarea
                   name="message"
@@ -95,8 +177,15 @@ const Contact: React.FC = () => {
                   onChange={handleChange}
                   required
                   rows={5}
+                  disabled={isSubmitting}
                 />
-                <button type="submit" className="btn btn-primary">Send Message</button>
+                <button 
+                  type="submit" 
+                  className="btn"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                </button>
               </>
             )}
           </motion.form>

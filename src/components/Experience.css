@@ -1,6 +1,8 @@
 .experience {
   background: var(--primary-black);
   position: relative;
+  overflow-x: hidden;
+  min-height: 100vh;
 }
 
 .experience::before {
@@ -34,7 +36,6 @@
 .timeline-item {
   position: relative;
   margin-bottom: 4rem;
-  width: 100%;
 }
 
 .timeline-item.left {
@@ -185,6 +186,15 @@
 }
 
 @media (max-width: 768px) {
+  .experience {
+    min-height: auto;
+    padding: 2rem 0;
+  }
+  
+  .timeline {
+    padding: 1rem 0;
+  }
+  
   .timeline::before {
     left: 30px;
   }
@@ -193,6 +203,7 @@
   .timeline-item.right {
     padding-left: 80px;
     padding-right: 0;
+    margin-bottom: 2rem;
   }
   
   .timeline-item.left .timeline-content::before,

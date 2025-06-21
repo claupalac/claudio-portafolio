@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FaUsers, FaCode, FaRocket } from 'react-icons/fa';
@@ -6,9 +6,21 @@ import './Experience.css';
 
 const Experience: React.FC = () => {
   const [ref, inView] = useInView({
-    threshold: 0.3,
+    threshold: 0.1,
     triggerOnce: true,
+    rootMargin: '-50px 0px',
   });
+
+  const [shouldAnimate, setShouldAnimate] = useState(false);
+  
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShouldAnimate(true);
+    }, 500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const isVisible = inView || shouldAnimate;
 
   const experiences = [
     {
@@ -61,7 +73,7 @@ const Experience: React.FC = () => {
         <motion.h2
           className="section-title"
           initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
           Experience
@@ -75,7 +87,7 @@ const Experience: React.FC = () => {
                 key={exp.period}
                 className={`timeline-item ${index % 2 === 0 ? 'left' : 'right'}`}
                 initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
+                animate={isVisible ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
               >
                 <div className="timeline-content">
