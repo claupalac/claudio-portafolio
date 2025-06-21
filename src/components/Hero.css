@@ -161,8 +161,13 @@
 .social-link:hover {
   background: var(--primary-gold);
   color: var(--primary-black);
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
+  box-shadow: 0 15px 30px rgba(255, 215, 0, 0.4);
+}
+
+.social-link.whatsapp-link:hover {
+  background: #25D366;
+  color: white;
+  box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
 }
 
 .scroll-indicator {

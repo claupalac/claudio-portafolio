@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaEnvelope, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { FaGithub, FaEnvelope, FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { trackContactForm, trackSocialClick } from '../utils/analytics';
 import { sendEmail } from '../utils/emailService';
 import './Contact.css';
@@ -62,6 +62,7 @@ const Contact: React.FC = () => {
   const EnvelopeIcon = FaEnvelope as React.ComponentType;
   const InstagramIcon = FaInstagram as React.ComponentType;
   const LinkedinIcon = FaLinkedin as React.ComponentType;
+  const WhatsappIcon = FaWhatsapp as React.ComponentType;
 
   return (
     <section id="contact" className="contact">
@@ -94,6 +95,7 @@ const Contact: React.FC = () => {
                 rel="noopener noreferrer" 
                 className="contact-social-link"
                 onClick={() => handleSocialClick('github')}
+                title="GitHub"
               >
                 <GithubIcon />
               </a>
@@ -103,6 +105,7 @@ const Contact: React.FC = () => {
                 rel="noopener noreferrer" 
                 className="contact-social-link"
                 onClick={() => handleSocialClick('instagram')}
+                title="Instagram"
               >
                 <InstagramIcon />
               </a>
@@ -112,13 +115,25 @@ const Contact: React.FC = () => {
                 rel="noopener noreferrer" 
                 className="contact-social-link"
                 onClick={() => handleSocialClick('linkedin')}
+                title="LinkedIn"
               >
                 <LinkedinIcon />
+              </a>
+              <a 
+                href="https://wa.me/59169495742?text=Hi%20Claudio!%20I%20found%20your%20portfolio%20and%20would%20like%20to%20connect." 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="contact-social-link whatsapp-link"
+                onClick={() => handleSocialClick('whatsapp')}
+                title="WhatsApp"
+              >
+                <WhatsappIcon />
               </a>
               <a 
                 href="mailto:clausspal97@gmail.com" 
                 className="contact-social-link"
                 onClick={() => handleSocialClick('email')}
+                title="Email"
               >
                 <EnvelopeIcon />
               </a>

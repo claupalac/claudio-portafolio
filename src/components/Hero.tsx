@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaEnvelope, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { FaGithub, FaEnvelope, FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { useInView } from 'react-intersection-observer';
-import { trackSectionView } from '../utils/analytics';
+import { trackSectionView, trackSocialClick } from '../utils/analytics';
 import './Hero.css';
 
 const Hero: React.FC = () => {
@@ -24,10 +24,15 @@ const Hero: React.FC = () => {
     }
   };
 
+  const handleSocialClick = (platform: string) => {
+    trackSocialClick(platform);
+  };
+
   const GithubIcon = FaGithub as React.ComponentType;
   const EnvelopeIcon = FaEnvelope as React.ComponentType;
   const InstagramIcon = FaInstagram as React.ComponentType;
   const LinkedinIcon = FaLinkedin as React.ComponentType;
+  const WhatsappIcon = FaWhatsapp as React.ComponentType;
 
   return (
     <section id="home" className="hero" ref={ref}>
@@ -106,6 +111,8 @@ const Hero: React.FC = () => {
               className="social-link"
               whileHover={{ scale: 1.1, y: -5 }}
               whileTap={{ scale: 0.9 }}
+              onClick={() => handleSocialClick('github')}
+              title="GitHub"
             >
               <GithubIcon />
             </motion.a>
@@ -116,6 +123,8 @@ const Hero: React.FC = () => {
               className="social-link"
               whileHover={{ scale: 1.1, y: -5 }}
               whileTap={{ scale: 0.9 }}
+              onClick={() => handleSocialClick('instagram')}
+              title="Instagram"
             >
               <InstagramIcon />
             </motion.a>
@@ -126,14 +135,30 @@ const Hero: React.FC = () => {
               className="social-link"
               whileHover={{ scale: 1.1, y: -5 }}
               whileTap={{ scale: 0.9 }}
+              onClick={() => handleSocialClick('linkedin')}
+              title="LinkedIn"
             >
               <LinkedinIcon />
+            </motion.a>
+            <motion.a
+              href="https://wa.me/59169495742?text=Hi%20Claudio!%20I%20found%20your%20portfolio%20and%20would%20like%20to%20connect."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-link whatsapp-link"
+              whileHover={{ scale: 1.1, y: -5 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => handleSocialClick('whatsapp')}
+              title="WhatsApp"
+            >
+              <WhatsappIcon />
             </motion.a>
             <motion.a
               href="mailto:clausspal97@gmail.com"
               className="social-link"
               whileHover={{ scale: 1.1, y: -5 }}
               whileTap={{ scale: 0.9 }}
+              onClick={() => handleSocialClick('email')}
+              title="Email"
             >
               <EnvelopeIcon />
             </motion.a>

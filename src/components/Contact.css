@@ -70,6 +70,12 @@
   box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
 }
 
+.contact-social-link.whatsapp-link:hover {
+  background: #25D366;
+  color: white;
+  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+}
+
 .contact-form {
   background: rgba(255, 215, 0, 0.05);
   border: 1px solid rgba(255, 215, 0, 0.1);
